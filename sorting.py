@@ -1,3 +1,15 @@
+```python
+"""
+Program: Merge Sort and Quick Sort
+Author: Vibhuti Singhal
+
+Description:
+Implements Merge Sort and Quick Sort using recursion.
+
+Input: A list of integers.
+Output: Sorted lists using Merge Sort and Quick Sort.
+"""
+
 class Sort:
     # Merge Sort
     def merge_sort(self, arr: list[int]) -> list[int]:
@@ -6,11 +18,14 @@ class Sort:
         mid = len(arr) // 2
         left = self.merge_sort(arr[:mid])
         right = self.merge_sort(arr[mid:])
+        
+        # Merge the sorted halves.
         return self.merge(left, right)
 
     def merge(self, left: list[int], right: list[int]) -> list[int]:
         result = []
         i = j = 0
+
         while i < len(left) and j < len(right):
             if left[i] <= right[j]:
                 result.append(left[i])
@@ -19,8 +34,10 @@ class Sort:
                 result.append(right[j])
                 j += 1
 
+        # Add remaining elements.
         result.extend(left[i:])
         result.extend(right[j:])
+
         return result
 
     # Quick Sort
@@ -29,13 +46,14 @@ class Sort:
             return arr
 
         pivot = arr[-1]
+
         left = [x for x in arr[:-1] if x <= pivot]
         right = [x for x in arr[:-1] if x > pivot]
-
         return self.quick_sort(left) + [pivot] + self.quick_sort(right)
-
 s = Sort()
 arr = [64, 25, 12, 22, 11]
+
 print("Original array:", arr)
 print("Merge Sort:", s.merge_sort(arr))
 print("Quick Sort:", s.quick_sort(arr))
+```
